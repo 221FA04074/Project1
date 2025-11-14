@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Boxes</title>
+    <link rel="stylesheet" href="home2.css">
+    <style>
+        /* Custom styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #a8d5e2, #f0e3c9); /* Gradient background */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #1a1a2e;
+            letter-spacing: 1px;
+        }
+
+        .box-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap; /* Allows wrapping if more than 3 boxes */
+            max-width: 1000px; /* Limit container width for better alignment */
+            justify-content: center;
+        }
+
+        .box {
+            width: 320px;
+            height: 200px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #333;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            background: linear-gradient(145deg, #6b6b6b, #333); /* Soft gradient for box background */
+        }
+
+        .box:hover {
+            transform: translateY(-10px) scale(1.05); /* Moves the box up and slightly scales it */
+            background-color: #444;
+        }
+
+        .box-title {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #ffd700; /* Gold color for the title */
+        }
+
+        .box-content {
+            font-size: 15px;
+            font-weight: normal;
+            color: #f0e3c9; /* Light color for content text */
+        }
+    </style>
+</head>
+<body>
+    <h1>About Our Old Age Home Services</h1>
+    <div class="box-container">
+        <div class="box">
+            <div class="box-title">Old Age Home</div>
+            <div class="box-content">Providing a safe and caring environment for elderly individuals with supportive community and companionship.</div>
+        </div>
+        <div class="box">
+            <div class="box-title">Objectives</div>
+            <div class="box-content">Our aim is to ensure the well-being, dignity, and comfort of residents by offering quality care and engaging activities.</div>
+        </div>
+        <div class="box">
+            <div class="box-title">Health</div>
+            <div class="box-content">We prioritize health with regular check-ups, mental wellness programs, and physical activities tailored for senior needs.</div>
+        </div>
+        <div class="box">
+            <div class="box-title">Challenges</div>
+            <div class="box-content">Overcoming isolation, managing health complexities, and providing emotional support are key challenges we address daily.</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Old Age Homes Locator</title>
+    <link rel="stylesheet" href="stylesloc.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: url('loactionbac.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+/* Navigation bar styling */
+nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background:yellowgreen;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav .logo {
+            display: flex;
+            align-items: center;
+        }
+        nav .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        nav .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        nav .join-btn {
+            padding: 10px 20px;
+            background-color: #b41564;
+            color: #333;
+            font-weight: bold;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+        <style>
+/* Additional CSS styles */
+button[type="button"] {
+    background-color: yellowgreen;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button[type="button"]:hover {
+    background-color: #b41564;
+}
+
+
+</style>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="Screenshot 2024-10-30 225206.png" alt="ElderCare Logo"> <!-- Replace with your logo image -->
+            <h1>Happy homes</h1>
+        </div>
+        <ul>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="help.html">Help</a></li>
+            <li><a href="qrpage.html">Payments</a></li>
+            <li><a href="extra.html">Premium Services</a></li>
+        </ul>
+        <a href="location.html" class="join-btn">Join Us</a>
+    </nav>
+    <div class="container">
+        <h1>Find Old Age Homes</h1>
+        <form id="locationForm">
+            <h2>Select Your Location:</h2>
+            <label>
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="radio" name="location" value="Guntur"> Guntur
+            </label><br>
+            <label>
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="radio" name="location" value="Vijayawada"> Vijayawada
+            </label><br>
+            <label>
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="radio" name="location" value="Hyderabad"> Hyderabad
+            </label><br>
+            <label>
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="radio" name="location" value="Khammam"> Khammam
+            </label><br>
+            <label>
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="radio" name="location" value="Ongole"> Ongole
+            </label><br>
+            <button type="button" onclick="showHomes()">Show Old Age Homes</button>
+        </form>
+
+        <div id="oldAgeHomes" class="hidden">
+            <h2>Old Age Homes:</h2>
+            <div id="homesList"></div>
+            <button onclick="goBack()">Go Back</button>
+        </div>
+    </div>
+    
+
+    <script>
+       function showHomes() {
+    const selectedLocation = document.querySelector('input[name="location"]:checked');
+    const homesList = document.getElementById('homesList');
+    const oldAgeHomes = {
+        Guntur: [
+            {
+                name: "Aasara Old Age Home",
+                rating: 4.5,
+                description: "Provides basic amenities and healthcare, including daily meals, personal hygiene, and regular health check-ups.",
+                amount: "₹41,500/month"
+            },
+            {
+                name: "Vatsalya Old Age Home",
+                rating: 4.0,
+                description: "Focuses on companionship, offering various activities and social programs to keep residents engaged.",
+                amount: "₹37,350/month"
+            },
+            {
+                name: "Srinivasa Old Age Home",
+                rating: 4.3,
+                description: "Offers a serene environment with dedicated staff and personalized care.",
+                amount: "₹39,840/month"
+            },
+            {
+                name: "Vishnu Old Age Home",
+                rating: 4.2,
+                description: "Combines comfort and care, providing recreational activities for residents.",
+                amount: "₹43,160/month"
+            },
+            {
+                name: "Anugraha Old Age Home",
+                rating: 4.1,
+                description: "Provides nutritious meals and healthcare services with a focus on well-being.",
+                amount: "₹37,350/month"
+            }
+        ],
+        Vijayawada: [
+            {
+                name: "Snehavanam Old Age Home",
+                rating: 4.2,
+                description: "Offers a homely environment with personalized care, including recreational activities and wellness programs.",
+                amount: "₹49,800/month"
+            },
+            {
+                name: "Anandashram",
+                rating: 4.7,
+                description: "Provides special care for the elderly, with trained staff available 24/7 to ensure comfort and safety.",
+                amount: "₹45,650/month"
+            },
+            {
+                name: "Punarjanma Old Age Home",
+                rating: 4.5,
+                description: "Focuses on mental well-being and physical health with various activities.",
+                amount: "₹51,460/month"
+            },
+            {
+                name: "Sukhibhava Old Age Home",
+                rating: 4.4,
+                description: "Encourages a community spirit among residents with group activities.",
+                amount: "₹48,210/month"
+            },
+            {
+                name: "Narayana Old Age Home",
+                rating: 4.3,
+                description: "Offers comfortable accommodations with round-the-clock medical support.",
+                amount: "₹49,800/month"
+            }
+        ],
+        Hyderabad: [
+            {
+                name: "Sankalp Old Age Home",
+                rating: 4.6,
+                description: "Well-equipped facilities including medical services, spacious rooms, and a garden for relaxation.",
+                amount: "₹58,100/month"
+            },
+            {
+                name: "Care and Share",
+                rating: 4.3,
+                description: "Emphasizes mental well-being, offering counseling sessions and engaging activities to uplift spirits.",
+                amount: "₹53,950/month"
+            },
+            {
+                name: "Nithya Old Age Home",
+                rating: 4.5,
+                description: "Provides a safe and nurturing environment with personalized care plans.",
+                amount: "₹56,440/month"
+            },
+            {
+                name: "Seva Old Age Home",
+                rating: 4.2,
+                description: "Focuses on community living with various programs for social interaction.",
+                amount: "₹58,100/month"
+            },
+            {
+                name: "Vasundhara Old Age Home",
+                rating: 4.4,
+                description: "Offers a blend of comfort and care, with experienced staff for all needs.",
+                amount: "₹62,250/month"
+            }
+        ],
+        Khammam: [
+            {
+                name: "Kalyana Old Age Home",
+                rating: 4.1,
+                description: "Focuses on nutrition and healthcare, ensuring residents receive balanced meals and regular medical check-ups.",
+                amount: "₹33,200/month"
+            },
+            {
+                name: "Elder Care Home",
+                rating: 4.4,
+                description: "Offers various activities and community support to keep residents active and socially engaged.",
+                amount: "₹29,050/month"
+            },
+            {
+                name: "Sampurna Old Age Home",
+                rating: 4.2,
+                description: "Provides emotional and physical support with a range of activities.",
+                amount: "₹30,700/month"
+            },
+            {
+                name: "Prerna Old Age Home",
+                rating: 4.3,
+                description: "Aims to enhance the quality of life through personalized care.",
+                amount: "₹32,370/month"
+            },
+            {
+                name: "Shubham Old Age Home",
+                rating: 4.5,
+                description: "Combines a homely atmosphere with professional care services.",
+                amount: "₹34,030/month"
+            }
+        ],
+        Ongole: [
+            {
+                name: "Shanti Niketan",
+                rating: 4.8,
+                description: "Peaceful surroundings with daily care, including meditation and yoga sessions for physical and mental health.",
+                amount: "₹41,500/month"
+            },
+            {
+                name: "Dhanvantri Old Age Home",
+                rating: 4.5,
+                description: "Provides special attention to health, with regular fitness activities and health monitoring.",
+                amount: "₹37,350/month"
+            },
+            {
+                name: "Vishalakshi Old Age Home",
+                rating: 4.6,
+                description: "Promotes a friendly environment with engaging activities and companionship.",
+                amount: "₹39,840/month"
+            },
+            {
+                name: "Prashanti Old Age Home",
+                rating: 4.4,
+                description: "Offers comprehensive care with a focus on both physical and mental health.",
+                amount: "₹39,020/month"
+            },
+            {
+                name: "Anand Old Age Home",
+                rating: 4.3,
+                description: "Provides a comfortable and supportive living environment for the elderly.",
+                amount: "₹38,280/month"
+            }
+        ]
+    };
+
+    homesList.innerHTML = '';
+    if (selectedLocation) {
+        const location = selectedLocation.value;
+        oldAgeHomes[location].forEach(home => {
+            const div = document.createElement('div');
+            div.className = 'home-box';
+            div.innerHTML = `
+                <div class="home-content">
+                    <i class="fas fa-home"></i><strong>${home.name}</strong>
+                    <p>${home.description}</p>
+                </div>
+                <div class="home-details">
+                    <div class="rating">${getStars(home.rating)}</div>
+                    <div class="amount">${home.amount}</div>
+                    <button onclick="joinHome('${home.name}')">Join</button>
+                </div>
+            `;
+            homesList.appendChild(div);
+        });
+        document.getElementById('locationForm').classList.add('hidden');
+        document.getElementById('oldAgeHomes').classList.remove('hidden');
+    } else {
+        alert('Please select a location.');
+    }
+}
+
+function joinHome(homeName) {
+    // Redirect to the login page
+    window.location.href = 'loginjoin.html'; // Change this to your actual login page URL
+}
+
+
+        function getStars(rating) {
+            const stars = Math.round(rating);
+            return '★'.repeat(stars) + '☆'.repeat(5 - stars);
+        }
+
+        function goBack() {
+            document.getElementById('locationForm').classList.remove('hidden');
+            document.getElementById('oldAgeHomes').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

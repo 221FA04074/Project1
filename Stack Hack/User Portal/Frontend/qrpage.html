@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Payment Page</title>
+  <style>
+    /* Basic styling */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; background-color: #f8f9fa; overflow-y: auto; }
+    .payment-container { max-width: 600px; width: 100%; padding: 20px; background: lightpink; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); text-align: center; margin: 20px; }
+    .payment-container h2 { margin-bottom: 20px; color: #333; font-size: 1.5rem; }
+    .qr-code { margin: 20px 0; }
+    .instructions { font-size: 1rem; color: #555; margin-bottom: 20px; }
+    .form-group { margin: 15px 0; }
+    .form-group label { display: block; font-size: 1rem; margin-bottom: 5px; color: #333; }
+    .form-group input[type="file"] { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+    .submit-btn { display: inline-block; padding: 10px 20px; font-size: 1rem; background-color: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s, transform 0.3s; }
+    .submit-btn:hover { background-color: #155ab6; transform: scale(1.05); }
+
+    /* Background styling */
+    body {
+        font-family: Arial, sans-serif;
+        background: url('paybac.jpg') no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+    }
+    
+    /* Apply blur effect to the entire background */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        filter: blur(8px);
+        z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <h1>Scan QR Code to Pay</h1>
+    
+    <!-- Sample QR Code Image -->
+    <div class="qr-code">
+      <img src="qr1.jpg" alt="QR Code" width="400" height="500">
+    </div>
+
+    <p class="instructions">Please pay a minimum amount of ₹1000 + half of the amount specified.<br>After payment, upload your proof of payment below.</p>
+
+    <!-- File Upload for Payment Proof -->
+    <div class="form-group">
+      <label for="payment-proof">Upload Payment Proof:</label>
+      <input type="file" id="payment-proof" accept=".pdf,.jpg,.jpeg,.png" required>
+    </div>
+
+    <!-- Submit Button -->
+    <button class="submit-btn" onclick="validatePayment()">Submit Proof</button>
+  </div>
+
+  <script>
+    function validatePayment() {
+      // Checking file upload
+      const paymentProof = document.getElementById("payment-proof");
+      
+      if (!paymentProof.value) {
+        alert("Please upload the payment proof.");
+      } else {
+        alert("Payment proof submitted successfully!");
+        window.location.href="home2.html";
+      }
+    }
+  </script>
+</body>
+</html>

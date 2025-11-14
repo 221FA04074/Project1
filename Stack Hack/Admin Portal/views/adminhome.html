@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('admin.jpg'); /* Replace with your background image */
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .content {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .notification-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .notification-btn:hover {
+      background-color: pink;
+    }
+    .notification-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 50%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .notification-panel.active {
+      transform: translateY(0);
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <button class="notification-btn" onclick="toggleNotifications()">Notifications</button>
+  <div class="notification-panel" id="notificationPanel">
+    <button class="close-btn" onclick="closeNotifications()">X</button>
+    <div id="notifications">Loading notifications...</div>
+  </div>
+  <div class="content">
+    <h2>Welcome to Admin Home</h2>
+  </div>
+
+  <script>
+    async function toggleNotifications() {
+      const notificationPanel = document.getElementById('notificationPanel');
+      notificationPanel.classList.toggle('active'); // Toggle visibility
+      
+      if (notificationPanel.classList.contains('active')) {
+        const notificationsElement = document.getElementById('notifications');
+        
+        try {
+          const response = await fetch('http://localhost:3000/contact');
+          const notificationData = await response.json();
+          // console.log(notificationData)
+          if (notificationData) {
+            var output=``;
+            for(var element in notificationData){
+              // console.log(element)
+              output+=`<strong>New Contact Form Message:</strong><br>
+              <strong>Name:</strong> ${notificationData[element].Name}<br>
+              <strong>Email:</strong> ${notificationData[element].Email}<br>
+              <strong>Message:</strong> ${notificationData[element].Message}<br>
+              <strong>Date:</strong> ${notificationData[element].Date}<br><br>
+            `;
+            }
+            notificationsElement.innerHTML=output;
+            // notificationsElement.innerHTML = `<strong>New Contact Form Message:</strong><br>
+            //   <strong>Name:</strong> ${notificationData.Name}<br>
+            //   <strong>Email:</strong> ${notificationData.Email}<br>
+            //   <strong>Message:</strong> ${notificationData.Message}<br>
+            //   <strong>Date:</strong> ${notificationData.Date}
+            // `;
+          } else {
+            notificationsElement.innerHTML = "No new notifications at this time.";
+          }
+        } catch (error) {
+          console.error("Error fetching notifications:", error);
+          notificationsElement.innerHTML = "Failed to load notifications.";
+        }
+      }
+    }
+    function closeNotifications() {
+      const notificationPanel = document.getElementById('notificationPanel');
+      notificationPanel.classList.remove('active'); // Hide the panel
+    }
+
+  </script>
+</body>
+</html>

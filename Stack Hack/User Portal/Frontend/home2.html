@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy homes</title>
+    <style>
+        /* Basic reset and font settings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        /* Header styling */
+        header {
+            position: relative;
+            height: 100vh;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Navigation bar styling */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav .logo {
+            display: flex;
+            align-items: center;
+        }
+        nav .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        nav .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        nav .join-btn {
+            padding: 10px 20px;
+            background-color: #e6c785;
+            color: #333;
+            font-weight: bold;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+
+        .background-image {
+            background-image: url('Screenshot 2024-10-30 223847.png');/* Replace with your image URL */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    position: absolute; /* Position the image absolutely */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(5px); /* Adjust blur intensity as needed */
+    z-index: -1; /* Place the background behind content */
+}
+
+        /* Main content styling */
+        .content {
+            text-align: center;
+            z-index: 1;
+            padding: 20px;
+        }
+        .content h1 {
+            font-size: 7rem;
+            margin-bottom: 10px;
+            color: orange;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Adds a glow effect for better readability */
+        }
+        .content p {
+            font-size: 1.25rem;
+            color:white;
+        }
+
+        /* Scrolling text container styling */
+        .scrolling-container {
+    width: 100%; /* Full width */
+    height: 80px; /* Increased height */
+    margin: 20px 0; /* Margin on top and bottom */
+    overflow: hidden;
+    white-space: nowrap;
+    border: 2px solid white;
+    padding: 10px;
+    text-align: center;
+    background-color: #ffffff; /* White background */
+    color: #333; /* Dark text color */
+    border-radius: 15px;
+    font-size: 2.5rem; /* Increased font size */
+    font-weight: bold; /* Bold text */
+    z-index: 1;
+}
+
+.scrolling-text {
+    display: inline-block;
+    animation: scrollText 20s linear infinite; /* Slower speed and infinite loop */
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%); /* Start off the right side */
+    }
+    100% {
+        transform: translateX(-100%); /* End off the left side */
+    }
+}
+
+
+        
+        /* Quotes Section Styling */
+        .quotes-section {
+    margin: 60px 0;
+    text-align: center;
+}
+
+.quotes-section h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+}
+
+.quotes-row {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next row */
+    justify-content: center;
+    gap: 20px; /* Space between quotes */
+}
+
+.quote {
+    text-align: center;
+    flex: 1 1 200px; /* Allows items to grow, shrink, and have a minimum width of 200px */
+    max-width: 250px; /* Limits the maximum width per quote */
+}
+
+.quote img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.quote p {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.quote span {
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+
+
+        /* Description Section Styling */
+        .description-section {
+            margin: 60px; /* Increased margin for spacing */
+            background-color: #ffffff; /* White background for contrast */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            overflow: hidden; /* Hide overflow for slides */
+            position: relative; /* Relative positioning for arrows */
+        }
+        .description-slider {
+            display: flex;
+            transition: transform 0.5s ease; /* Smooth slide transition */
+        }
+        .description-slide {
+            min-width: 100%; /* Each slide takes full width */
+            padding: 20px; /* Padding around the content */
+            display: flex; /* Use flex to align content and image */
+            align-items: center; /* Center the items vertically */
+            justify-content: space-around;
+            height:500px; /* Space items around */
+        }
+        .description-slide h3 {
+            font-size: 1.8rem; /* Heading size */
+            margin-bottom: 10px; /* Space below heading */
+            color: #333; /* Heading color */
+        }
+        .description-slide p {
+            font-size: 1rem; /* Text size */
+            line-height: 1.5; /* Spacing between lines */
+            color: #555; /* Text color */
+            max-width: 400px; /* Limit width of text */
+        }
+        .description-slide img {
+    width: 500px; /* Set a fixed width for images */
+    height: 400px; /* Set a fixed height for images */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white; /* Arrow background color */
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 50%; /* Circular arrow button */
+            z-index: 1;
+        }
+        .slider-arrow.left {
+            left: 10px; /* Position on left */
+        }
+        .slider-arrow.right {
+            right: 10px; /* Position on right */
+        }
+        .slider-arrow:hover {
+            background-color: #d4b475; /* Darker shade on hover */
+        }
+        /* Meet Us Section Styling */
+.meet-us-section {
+    margin: 100px; /* Margin for spacing */
+    text-align: center; /* Center align text */
+}
+
+.meet-us-section h2 {
+    font-size: 2rem; /* Heading size */
+    color: #333; /* Heading color */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+.meet-us-images {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center images */
+    gap: 20px; /* Space between images */
+}
+
+.meet-us-images img {
+    width: 200px; /* Image width */
+    height: 300px; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+/* Statistics Section Styling */
+/* Statistics Section Styling */
+.statistics-section {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-around; /* Space items evenly across the full width */
+    margin: 40px 0; /* Margin for spacing */
+    padding: 20px; /* Padding for inner spacing */
+    background-color: #ecf0f1; /* Optional background color */
+}
+
+.statistic {
+    text-align: center; /* Center align text */
+    flex: 1; /* Allow items to grow equally */
+}
+
+.statistic h3 {
+    font-size: 5.5rem; /* Size for numbers */
+    color: orange; /* Color for numbers */
+    margin-bottom: 10px; /* Space below numbers */
+}
+
+.statistic p {
+    font-size: 1.25rem; /* Size for descriptions */
+    color: #7f8c8d; /* Color for descriptions */
+}
+/* Latest News Section Styling */
+/* Latest News Section Styling */
+.latest-news-section {
+    margin: 40px 0; /* Margin for spacing */
+    padding: 20px; /* Padding for inner spacing */
+    background-color: #f9f9f9; /* Optional background color */
+}
+
+.latest-news-section h2 {
+    text-align: center; /* Center align section title */
+    color: #2c3e50; /* Color for title */
+    margin-bottom: 20px; /* Spacing below the title */
+}
+
+.news-container {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-between; /* Space items evenly */
+}
+
+.news-item {
+    flex: 1 1 calc(25% - 20px); /* Four items per row, with spacing */
+    margin: 10px; /* Margin around each item */
+    background-color: #fff; /* Background color for each item */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    overflow: hidden; /* Hide overflow for rounded corners */
+}
+
+.news-item img {
+    width: 100%; /* Full width for images */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.news-item h4 {
+    margin: 10px; /* Margin for title */
+    font-size: 18px; /* Title font size */
+}
+
+.news-item p {
+    margin: 10px; /* Margin for description */
+    color: #7f8c8d; /* Color for descriptions */
+    font-size: 14px; /* Description font size */
+}
+
+/* FAQs Section Styling */
+
+
+.faqs-section {
+    margin: 40px 0; /* Margin for spacing */
+    padding: 20px; /* Padding for inner spacing */
+    background-color: #f9f9f9; /* Background color for the section */
+    border-radius: 8px; /* Rounded corners for the section */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    width: 100%; /* Full width of the page */
+    box-sizing: border-box; /* Include padding in the width */
+    text-align: center; /* Center align text within the section */
+}
+
+.faqs-section h2 {
+    color: #2c3e50; /* Color for title */
+    margin-bottom: 20px; /* Spacing below the title */
+    font-size: 28px; /* Font size for the title */
+    font-weight: bold; /* Bold font for emphasis */
+}
+
+.faq-item {
+    margin: 10px 0; /* Margin for spacing between items */
+    padding: 15px; /* Padding for inner spacing */
+    background-color: #ffffff; /* Background color for each item */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth transitions */
+}
+
+.faq-item:hover {
+    transform: translateY(-2px); /* Slight upward movement on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+.faq-item h4 {
+    margin: 0; /* Remove margin from the question */
+    color: #2980b9; /* Color for questions */
+    font-size: 20px; /* Font size for questions */
+    font-weight: bold; /* Bold font for questions */
+}
+
+.faq-item p {
+    margin: 5px 0; /* Margin for description */
+    color: #7f8c8d; /* Color for descriptions */
+    display: none; /* Hide answers by default */
+    font-size: 16px; /* Font size for answers */
+    line-height: 1.5; /* Line height for readability */
+}
+
+/* Optional styles for the section when answers are shown */
+.faq-item.active p {
+    display: block; /* Show answer when active */
+    margin-top: 10px; /* Margin above answer for spacing */
+    animation: fadeIn 0.3s ease; /* Fade-in effect for answers */
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Social Media Section Styling */
+.social-media-section {
+    text-align: center;
+    padding: 40px 0;
+    background-color: #f4f4f9;
+}
+
+.social-media-section h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Individual Icon Background Colors */
+.facebook { background-color: #3b5998; }
+.instagram { background-color: #e1306c; }
+.twitter { background-color: #1da1f2; }
+.whatsapp { background-color: #25d366; }
+.linkedin { background-color: #0077b5; }
+
+/* Hover Effects */
+.social-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+/* Contact Form Section */
+/* Contact Form Section */
+.contact-form-section {
+    max-width: 10000px; /* Makes the form section span the entire width */
+    width: 80%; /* Sets a comfortable width */
+    margin: 0 auto; /* Centers the form horizontally */
+    padding: 40px 20px; /* Padding for the entire section */
+    background-color: #ffffff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center; /* Centered text */
+}
+
+/* Responsive Styling for Large Screens */
+@media (min-width: 768px) {
+    .contact-form-section {
+        width: 60%; /* Slightly reduces width on larger screens */
+    }
+}
+
+/* Title Styling */
+.contact-form-section h2 {
+    font-size: 32px; /* Font size for header */
+    font-weight: bold; /* Bold font weight */
+    color: #333333; /* Header color */
+    margin-bottom: 20px; /* Space below header */
+}
+
+/* Contact Form Styling */
+.contact-form {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Vertical alignment */
+    gap: 15px; /* Space between form elements */
+}
+
+/* Responsive Flex Row for Inputs */
+.form-row {
+    display: flex; /* Flexbox for rows */
+    flex-wrap: wrap; /* Wrap items */
+    gap: 10px; /* Space between items */
+}
+
+/* Input and Textarea Styling */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: 100%; /* Full width for inputs */
+    padding: 12px; /* Padding for inputs */
+    font-size: 16px; /* Font size for inputs */
+    border: 1px solid #ddd; /* Border color */
+    border-radius: 25px; /* Rounded corners */
+    outline: none; /* Remove outline */
+    transition: border-color 0.3s; /* Transition for border color */
+}
+
+/* Add focus effect for inputs */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #888; /* Change border color on focus */
+}
+
+/* Submit Button Styling */
+.submit-button {
+    padding: 12px; /* Padding for button */
+    font-size: 18px; /* Font size for button */
+    font-weight: bold; /* Bold font weight */
+    color: #ffffff; /* Text color */
+    background-color: #f0c978; /* Button background color */
+    border: none; /* No border */
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition for background color */
+}
+
+/* Submit Button Hover Effect */
+.submit-button:hover {
+    background-color: #e1b76b; /* Change background color on hover */
+}
+
+        /* Main container styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Contact section styling */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 columns */
+            grid-template-rows: auto auto; /* 2 rows */
+            gap: 20px;
+            width: 100%;
+            max-width: 2000px;
+            padding: 40px 20px;
+            margin: 0 auto;
+            background-color: #f0f4f8;
+            box-sizing: border-box;
+        }
+
+        /* Header styling */
+        .contact-section h1 {
+            width: 100%;
+            font-size: 36px;
+            text-align: center;
+            color: #333333;
+            grid-column: span 2;
+            margin-bottom: 30px;
+        }
+
+        /* Card styling */
+        .contact-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Title styling inside each card */
+        .contact-card h3 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        /* Text styling inside each card */
+        .contact-card p {
+            font-size: 18px;
+            color: #555555;
+            margin: 0;
+        }
+        .footer {
+    position: fixed; /* Fixed position at the bottom */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    color: #fff; /* White text color */
+    padding: 10px 0; /* Padding for spacing */
+    z-index: 1000; /* Ensure it appears above other content */
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.feature {
+    flex: 1 1 calc(25% - 20px);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.feature img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+h2 {
+    color: #007bff;
+}
+
+p {
+    color: #666;
+}
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.8); /* White background with transparency */
+    color: #000; /* Black text color for better contrast */
+    padding: 5px 10px; /* Decreased padding for a shorter footer */
+    z-index: 1000; /* Ensure it appears above other content */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center align items vertically */
+}
+
+.footer p {
+    margin: 0; /* Remove default margin */
+    font-size: 14px; /* Adjust font size if necessary */
+}
+
+.social-icons {
+    display: flex; /* Use flex to align icons */
+    align-items: center; /* Center icons vertically */
+}
+
+.social-icons a {
+    margin: 0 10px; /* Spacing between icons */
+}
+
+.social-icons img {
+    width: 25px; /* Set a smaller width for icons */
+    height: auto; /* Maintain aspect ratio */
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <img src="Screenshot 2024-10-30 225206.png" alt="ElderCare Logo"> <!-- Replace with your logo image -->
+            <h1>Happy homes</h1>
+        </div>
+        <ul>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="help.html">Help</a></li>
+            <li><a href="qrpage.html">Payment</a></li>
+            <li><a href="extra.html">Premium Services</a></li>
+        </ul>
+        <a href="location.html" class="join-btn">Join Us</a>
+    </nav>
+
+    <div class="background-image"></div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Golden Years</h1>
+        <p>Embrace the joy of living with us.</p>
+    </div>
+</header>
+
+<!-- Scrolling Text Container -->
+<div class="scrolling-container">
+    <span class="scrolling-text">Welcome to Happy homes |  Compassionate Care | Community Living | Join Us Today!</span>
+</div>
+
+<!-- Quotes Section -->
+<div class="quotes-section">
+    <h2>Cheers!</h2>
+    <div class="quotes-row">
+        <div class="quote">
+            <p>"The best way to find yourself is to lose yourself in the service of others."</p>
+            <img src="Screenshot 2024-10-30 114653.png" alt="Person 1"> <!-- Replace with your image -->
+            <span>Mohandas Gandhi</span>
+        </div>
+        <div class="quote">
+            <p>"To care for anyone else enough to make their problems one’s own is ever the beginning of one’s real morality."</p>
+            <img src="Screenshot 2024-10-30 221602.png" alt="Person 2"> <!-- Replace with your image -->
+            <span>Felix Adler</span>
+        </div>
+        <div class="quote">
+            <p>"Live in the sunshine, swim in the sea, drink the wild air."</p>
+            <img src="Screenshot 2024-10-30 221658.png" alt="Person 3"> <!-- Replace with your image -->
+            <span>Ralph Waldo Emerson</span>
+        </div>
+    </div>
+    <!-- New row with three more quotes -->
+    <div class="quotes-row">
+        <div class="quote">
+            <p>"Happiness is not something ready-made. It comes from your own actions."</p>
+            <img src="Screenshot 2024-10-30 221410.png" alt="Person 4"> <!-- Replace with your image -->
+            <span>Dalai Lama</span>
+        </div>
+        <div class="quote">
+            <p>"The only way to do great work is to love what you do."</p>
+            <img src="Screenshot 2024-10-30 221500.png" alt="Person 5"> <!-- Replace with your image -->
+            <span>Steve Jobs</span>
+        </div>
+        <div class="quote">
+            <p>"It is not how much we give but how much love we put into giving."</p>
+            <img src="Screenshot 2024-10-30 221343.png" alt="Person 6"> <!-- Replace with your image -->
+            <span>Mother Teresa</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- Description Section -->
+<div class="description-section">
+    <button class="slider-arrow left" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="slider-arrow right" onclick="moveSlide(1)">&#10095;</button>
+    
+    <div class="description-slider">
+        <div class="description-slide">
+            <img src="Screenshot 2024-10-30 191705.png" alt="Our Mission" > <!-- Replace with your image -->
+            <div>
+                <h3>Our Mission</h3>
+                <p>At our facility, we are dedicated to providing a warm and supportive environment for our elderly residents. Our mission is to foster dignity and independence through personalized care and community engagement. We believe in creating a safe and loving space where our residents can thrive, feel valued, and maintain their individuality.</p>
+            </div>
+        </div>
+        <div class="description-slide">
+            <img src="Screenshot 2024-10-30 191403.png" alt="Our Services"> <!-- Replace with your image -->
+            <div>
+                <h3>Our Services</h3>
+                <p>We offer a comprehensive range of services designed to meet the unique needs of each resident. Our offerings include personalized care plans, daily recreational activities, health services, and 24/7 support. From physical therapy sessions to engaging social events, we ensure that every resident enjoys a fulfilling lifestyle while receiving the care they need.</p>
+            </div>
+        </div>
+        <div class="description-slide">
+            <img src="Screenshot 2024-10-30 191505.png" alt="Join Us"> <!-- Replace with your image -->
+            <div>
+                <h3>Join Us</h3>
+                <p>We invite you to become part of our vibrant community. Joining us means more than just receiving care; it means experiencing the joy of companionship and support. Our residents often form lasting friendships, participate in group activities, and enjoy shared meals that foster a sense of belonging. Come be a part of a community that values connection and well-being.</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+    <!-- Statistics Section -->
+<div class="statistics-section">
+    <div class="statistic">
+        <h3>50+</h3>
+        <p>Residents</p>
+    </div>
+    <div class="statistic">
+        <h3>20+</h3>
+        <p>Engaging Activities</p>
+    </div>
+    <div class="statistic">
+        <h3>10+</h3>
+        <p>Years of Care</p>
+    </div>
+</div>
+<!-- Latest News Section -->
+<div class="latest-news-section">
+    <h2>Latest News Updates</h2>
+    <div class="news-container">
+        <div class="news-item">
+            <img src="Screenshot 2024-10-30 202724.png" alt="Grandparents Day">
+            <h4>Grandparents Day Celebration</h4>
+            <p>Join us for a special celebration on October 1st to honor our beloved grandparents!</p>
+        </div>
+        <div class="news-item">
+            <img src="Screenshot 2024-10-30 201754.png" alt="Yoga Classes">
+            <h4>Yoga Classes</h4>
+            <p>Participate in our weekly yoga classes every Tuesday and Thursday to promote wellness.</p>
+        </div>
+        <div class="news-item">
+            <img src="Screenshot 2024-10-30 201958.png" alt="Cooking Classes">
+            <h4>Cooking Classes</h4>
+            <p>Learn new recipes and cooking techniques with our resident chef every Saturday!</p>
+        </div>
+        <div class="news-item">
+            <img src="Screenshot 2024-10-30 201958.png" alt="Volunteer Opportunities">
+            <h4>Volunteer Opportunities</h4>
+            <p>We are looking for volunteers to help with activities and events. Join us!</p>
+        </div>
+    </div>
+</div>
+
+<!-- FAQs Section -->
+<div class="faqs-section">
+    <h2>Simple FAQs</h2>
+    <div class="faq-item" onclick="toggleAnswer(this)">
+        <h4>What services do you offer?</h4>
+        <p>We offer a variety of services including daily activities, medical care, and social events.</p>
+    </div>
+    <div class="faq-item" onclick="toggleAnswer(this)">
+        <h4>How can I register for activities?</h4>
+        <p>Residents can register for activities through our monthly newsletter or by contacting staff directly.</p>
+    </div>
+    <div class="faq-item" onclick="toggleAnswer(this)">
+        <h4>Are visitors allowed?</h4>
+        <p>Yes, visitors are welcome! We encourage family and friends to visit during visiting hours.</p>
+    </div>
+    <div class="faq-item" onclick="toggleAnswer(this)">
+        <h4>What are the meal options?</h4>
+        <p>We provide a variety of meal options catering to different dietary needs and preferences.</p>
+    </div>
+</div>
+<div class="container">
+    <h1>Why Choose Us?</h1>
+    <div class="features">
+        <div class="feature">
+            <img src="Screenshot 2024-10-31 133237.png" alt="Professional Team">
+            <h2>Professional and Experienced Team</h2>
+            <p>Our team is highly skilled and dedicated to providing top-notch services.</p>
+        </div>
+        <div class="feature">
+            <img src="Screenshot 2024-10-31 133535.png" alt="Customer Focused Services">
+            <h2>Customer-Focused Services</h2>
+            <p>We prioritize your needs and ensure satisfaction in every project.</p>
+        </div>
+        <div class="feature">
+            <img src="Screenshot 2024-10-31 133434.png" alt="Innovative Solutions">
+            <h2>Innovative Solutions to Meet Modern Needs</h2>
+            <p>We leverage the latest technologies to deliver creative solutions.</p>
+        </div>
+        <div class="feature">
+            <img src="Screenshot 2024-10-31 133329.png" alt="24/7 Support">
+            <h2>24/7 Support and Assistance</h2>
+            <p>Our support team is always available to assist you, day or night.</p>
+        </div>
+    </div>
+</div>
+<div class="social-media-section">
+    <h2>Stay Connected With Us!</h2>
+    <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank" class="social-icon facebook" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" class="social-icon instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.twitter.com" target="_blank" class="social-icon twitter" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.whatsapp.com" target="_blank" class="social-icon whatsapp" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-icon linkedin" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+    </div>
+</div>
+
+<div class="contact-section">
+    <h1><img src="Screenshot 2024-10-30 220052.png"height="200"width="550"></img></h1>
+    
+    <div class="contact-card">
+        <h3>Phone</h3>
+        <p>7989026236,9392630070</p>
+    </div>
+    
+    <div class="contact-card">
+        <h3>Email</h3>
+        <p>suohappyhomes@gmail.com</p>
+    </div>
+    
+    <div class="contact-card">
+        <h3>Address</h3>
+        <p>India</p>
+    </div>
+    
+    <div class="contact-card">
+        <h3>Working Hours</h3>
+        <p>Mon-Fri: 9am - 5pm</p>
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<!-- Footer Section -->
+<footer style="background-color: white; padding: 20px; font-family: Arial, sans-serif; color: #4b0d37;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
+        
+        <!-- Quick Links -->
+        <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+            <h3 style="color: #83256e; font-weight: bold;">QUICK LINKS</h3>
+            <ul style="list-style-type: none; padding: 0;">
+                <li><a href="home.html" style="text-decoration: none; color: #000;">Home</a></li>
+                <li><a href="service.html" style="text-decoration: none; color: #000;">Services</a></li>
+               
+                <li><a href="contact.html" style="text-decoration: none; color: #000;">Contact us</a></li>
+                <li><a href="help.html" style="text-decoration: none; color: #000;">Help</a></li>
+                <li><a href="qrpage.html" style="text-decoration: none; color: #000;">Payment</a></li>
+                <li><a href="extra.html" style="text-decoration: none; color: #000;">Premium Services</a></li>
+                <li><a href="location.html" style="text-decoration: none; color: #000;">Join us</a></li>
+               
+            </ul>
+        </div>
+        
+
+       
+
+        <!-- Contact Information -->
+        <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+            <h3 style="color: #83256e; font-weight: bold;">GET IN TOUCH</h3>
+            <p style="margin: 5px 0;"><strong>HEAD OFFICE:</strong><br> Avantika Enclave, 6th Floor,BHEL road,Ameenpur, Hyderabad, 502032</p>
+            <p style="margin: 5px 0;"><strong>EMAIL ID:</strong> happyhomes1607@gmail.com</a></p>
+            <p style="margin: 5px 0;"><strong>PHONE NO:</strong> 7989026236</p>
+            <p style="margin: 5px 0;"><strong>CONTACT:</strong>9392630070</a></p>
+        </div>
+        
+       
+<br><br>
+    <!-- Footer Bottom -->
+    <div style="text-align: right; padding: 10px 0; margin-top: 20px;">
+        <p style="margin: 0;">&copy; 2024 HAPPY HOMES | All Rights Reserved</a></p>
+        <p style="margin: 0;">DESIGNED & DEVELOPED BY HAPPY HOMES</p>
+    </div>
+</footer>
+
+<script>
+    let currentSlide = 0;
+
+    function moveSlide(direction) {
+        const slides = document.querySelectorAll('.description-slide');
+        const totalSlides = slides.length;
+
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides; // Ensure currentSlide wraps around
+
+        // Update slider transform to show the current slide
+        const slider = document.querySelector('.description-slider');
+       
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+    
+    function toggleAnswer(element) {
+    const answer = element.querySelector('p');
+    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    
+    // Toggle active class for styling
+    element.classList.toggle('active');
+}
+
+
+</script>
+
+</body>
+</html>

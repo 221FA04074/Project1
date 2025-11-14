@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Details Form</title>
+  <style>
+    /* Styles for form layout and input fields */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background-color: #f0f4f8;line-height: 1.6 }
+    .form-container { width: 60%; margin: 20px auto; padding: 20px; border-radius: 8px; background-color: #ffffff; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); }
+    .form-container h2 { text-align: center; margin-bottom: 20px; color: #333; }
+    .form-section { margin-bottom: 20px; }
+    .form-section h3 { font-size: 1.3rem; color: #1a73e8; margin-bottom: 10px; border-bottom: 2px solid #a1c4fe; padding-bottom: 5px; }
+    .form-group { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 15px; }
+    .form-group label { flex: 1 1 200px; font-size: 1rem; color: #333; }
+    .form-group input[type="text"], .form-group input[type="number"], .form-group input[type="email"], .form-group input[type="file"], .form-group select { flex: 2 1 300px; padding: 8px; border: 1px solid #ddd; border-radius: 5px; transition: border-color 0.3s; }
+    .form-group input:focus, .form-group select:focus { border-color: #1a73e8; outline: none; }
+    .hidden { display: none; }
+    .submit-btn { display: block; width: 100%; padding: 10px; border: none; border-radius: 5px; background-color: #1a73e8; color: white; font-size: 1rem; cursor: pointer; transition: background-color 0.3s, transform 0.3s; }
+    .submit-btn:hover { background-color: #155ab6; transform: scale(1.05); }
+    /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3c5a99;
+    color: #fff;
+    padding: 1em;
+  }
+  
+  header .logo {
+    font-size: 1.5em;
+  }
+  
+  header nav a {
+    color: #fff;
+    margin: 0 1em;
+    text-decoration: none;
+  }
+  
+  header nav a:hover {
+    color: #ffb703;
+  }
+  /* Navigation bar styling */
+  nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav .logo {
+            display: flex;
+            align-items: center;
+        }
+        nav .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        nav .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        nav .join-btn {
+            padding: 10px 20px;
+            background-color: #e6c785;
+            color: #333;
+            font-weight: bold;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+        <img src="Screenshot 2024-10-30 225206.png" alt="ElderCare Logo"> <!-- Replace with your logo image -->
+        <h1>Happy Homes</h1>
+    </div>
+    <ul>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="help.html">Help</a></li>
+    </ul>
+    <a href="location.html" class="join-btn">Join Us</a>
+</nav>
+<div class="form-container" style="margin-top: 100px;">
+  <h2>Personal Details Form</h2>
+  <form method="post" action="javascript:submitLogin()" >
+    
+    <div class="form-section">
+      <h3>Personal Details</h3>
+      <div class="form-group">
+        <label for="personal-name">Name:</label>
+        <input type="text" id="personal-name" required>
+      </div>
+      <div class="form-group">
+        <label for="personal-surname">Surname:</label>
+        <input type="text" id="personal-surname" required>
+      </div>
+      <div class="form-group">
+        <label for="personal-age">Age:</label>
+        <input type="number" id="personal-age" required>
+      </div>
+      <div class="form-group">
+        <label for="personal-phone">Phone Number:</label>
+        <input type="text" id="personal-phone" required>
+      </div>
+    </div>
+
+    <!-- Proofs Section -->
+    <div class="form-section">
+      <h3>Proofs</h3>
+      <div class="form-group">
+        <label for="proof-type">Select Proof:</label>
+        <select id="proof-type" onchange="toggleProofFields()" required>
+          <option value="">Select</option>
+          <option value="aadhar">Aadhar</option>
+          <option value="pan">PAN</option>
+        </select>
+      </div>
+      <!-- Aadhar Section -->
+      <div id="aadhar-fields" class="hidden">
+        <div class="form-group">
+          <label for="aadhar-number">Aadhar Number:</label>
+          <input type="text" id="aadhar-number" pattern="\d{12}" title="Aadhar number must be exactly 12 digits" required>
+        </div>
+        <div class="form-group">
+          <label for="aadhar-file">Upload Aadhar File:</label>
+          <input type="file" id="aadhar-file" accept=".pdf,.jpg,.jpeg,.png" required>
+        </div>
+      </div>
+      <!-- PAN Section -->
+      <div id="pan-fields" class="hidden">
+        <div class="form-group">
+          <label for="pan-number">PAN Number:</label>
+          <input type="text" id="pan-number" pattern="[A-Z0-9]{10}" title="PAN number must be exactly 10 characters" required>
+        </div>
+        <div class="form-group">
+          <label for="pan-file">Upload PAN File:</label>
+          <input type="file" id="pan-file" accept=".pdf,.jpg,.jpeg,.png" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- Joined By Section -->
+    <div class="form-section">
+      <h3>Joined By</h3>
+      <div class="form-group">
+        <label for="joined-name">Name:</label>
+        <input type="text" id="joined-name" required>
+      </div>
+      <div class="form-group">
+        <label for="joined-surname">Surname:</label>
+        <input type="text" id="joined-surname" required>
+      </div>
+      <div class="form-group">
+        <label for="relation">Relation:</label>
+        <input type="text" id="relation" required>
+      </div>
+      <div class="form-group">
+        <label for="joined-email">Email:</label>
+        <input type="email" id="joined-email" required>
+      </div>
+      <div class="form-group">
+        <label for="joined-phone">Phone Number:</label>
+        <input type="text" id="joined-phone" required>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" id="submitbutton" class="submit-btn" onclick="return submitForm()">Submit</button>
+  </form>
+  </div>
+  <footer style="background-color: white; padding: 20px; font-family: Arial, sans-serif; color: #4b0d37;">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
+        
+        <!-- Quick Links -->
+        <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+            <h3 style="color: #83256e; font-weight: bold;">QUICK LINKS</h3>
+            <ul style="list-style-type: none; padding: 0;">
+                <li><a href="home.html" style="text-decoration: none; color: #000;">Home</a></li>
+                <li><a href="service.html" style="text-decoration: none; color: #000;">Services</a></li>
+               
+                <li><a href="contact.html" style="text-decoration: none; color: #000;">Contact us</a></li>
+                <li><a href="help.html" style="text-decoration: none; color: #000;">Help</a></li>
+                <li><a href="location.html" style="text-decoration: none; color: #000;">Join us</a></li>
+               
+            </ul>
+        </div>
+        
+       
+
+        <!-- Contact Information -->
+        <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+            <h3 style="color: #83256e; font-weight: bold;">GET IN TOUCH</h3>
+            <p style="margin: 5px 0;"><strong>HEAD OFFICE:</strong><br> Hara Chambers, 5th Floor, KH Road, Srinivas Colony, Bengaluru, Karnataka 560027</p>
+            <p style="margin: 5px 0;"><strong>EMAIL ID:</strong> happyhomes1607@gmail.com</a></p>
+            <p style="margin: 5px 0;"><strong>PHONE NO:</strong> 7989026236</p>
+            <p style="margin: 5px 0;"><strong>CONTACT:</strong>9392630070</a></p>
+        </div>
+        
+       
+<br><br>
+    <!-- Footer Bottom -->
+    <div style="text-align: right; padding: 10px 0; margin-top: 20px;">
+        <p style="margin: 0;">&copy; 2024 HAPPY HOMES | All Rights Reserved</a></p>
+        <p style="margin: 0;">DESIGNED & DEVELOPED BY HAPPY HOMES</p>
+    </div>
+</footer>
+
+  <script>
+    function toggleProofFields() {
+      const proofType = document.getElementById('proof-type').value;
+      document.getElementById('aadhar-fields').classList.add('hidden');
+      document.getElementById('pan-fields').classList.add('hidden');
+      
+      if (proofType === 'aadhar') {
+        document.getElementById('aadhar-fields').classList.remove('hidden');
+      } else if (proofType === 'pan') {
+        document.getElementById('pan-fields').classList.remove('hidden');
+      }
+    }
+
+    async function submitForm() {
+      const formData = {
+        personalName: document.getElementById('personal-name').value,
+        personalSurname: document.getElementById('personal-surname').value,
+        personalAge: document.getElementById('personal-age').value,
+        personalPhone: document.getElementById('personal-phone').value,
+        proofType: document.getElementById('proof-type').value,
+        aadharNumber: document.getElementById('aadhar-number').value,
+        aadharPhoto: document.getElementById('aadhar-file').value,
+        panNumber: document.getElementById('pan-number').value,
+        panPhoto: document.getElementById('pan-file').value,
+        joinedName: document.getElementById('joined-name').value,
+        joinedSurname: document.getElementById('joined-surname').value,
+        relation: document.getElementById('relation').value,
+        joinedEmail: document.getElementById('joined-email').value,
+        joinedPhone: document.getElementById('joined-phone').value
+      };
+
+      try {
+        const response = await fetch('http://localhost:3000/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+          alert("Form submitted successfully!");
+          // window.location.href = "qrpage.html"
+          // var ele=document.createElement("a");
+          // ele.href="qrpage.html";
+          // document.appendChild();
+          // ele.click();
+
+          window.location.href = "qrpage.html";
+          return false;
+        
+          // window.location = "qrpage.html"
+          // location.assign(location.origin + "/qrpage.html")
+        } else {
+          alert("Failed to submit form.");
+        }
+      }
+       catch (error) {
+        alert("An error occurred. Please try again later.");
+      }
+      return false;
+    }
+    function submitLogin() {
+            alert("Login successful!");
+            window.location.href = "extra.html";
+        }
+
+      document.getElementById("submitbutton").addEventListener("submit",(event)=>{
+        event.preventDefault();
+        submitForm();
+      })
+
+ </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation Form</title>
+    <style>
+        /* Background image with blur */
+        body {
+            font-family: Arial, sans-serif;
+            background: url('extrabac.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        /* Apply blur effect to the entire background */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        /* Form container */
+        form {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for the background to show through */
+            border-radius: 10px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Form title */
+        h1 {
+            text-align: center;
+            color: #007bff;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        /* Label and input styling */
+        label {
+            color: #495057;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 12px;
+            display: block;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="email"]:focus {
+            border-color: #007bff;
+        }
+
+        /* Radio and checkbox groups styling */
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .radio-group label, .checkbox-group label {
+            font-weight: normal;
+        }
+
+        /* Submit button styling */
+       /* Submit button styling */
+       button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #218838;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        
+    </style>
+</head>
+<body>
+    <form id="extraServicesForm">
+        <h1>Accommodation Details Form</h1>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label>Food Preference:</label>
+        <div class="radio-group">
+            <input type="radio" id="veg" name="food" value="veg" required>
+            <label for="veg">Veg</label>
+            <input type="radio" id="nonveg" name="food" value="non-veg">
+            <label for="nonveg">Non-Veg</label>
+        </div>
+
+        <label>Bed Sharing:</label>
+        <div class="radio-group">
+            <input type="radio" id="bed1" name="bedsharing" value="1" required>
+            <label for="bed1">1</label>
+            <input type="radio" id="bed2" name="bedsharing" value="2">
+            <label for="bed2">2</label>
+            <input type="radio" id="bed3" name="bedsharing" value="3">
+            <label for="bed3">3</label>
+        </div>
+
+        <label>Accommodation Type:</label>
+        <div class="radio-group">
+            <input type="radio" id="ac" name="accommodation" value="ac" required>
+            <label for="ac">AC</label>
+            <input type="radio" id="nonac" name="accommodation" value="non-ac">
+            <label for="nonac">Non-AC</label>
+        </div>
+
+        <label>Smart Appliances:</label>
+        <div class="checkbox-group">
+            <input type="checkbox" id="laptop" name="appliance" value="laptop">
+            <label for="laptop">Laptop</label>
+            <input type="checkbox" id="pc" name="appliance" value="pc">
+            <label for="pc">PC</label>
+            <input type="checkbox" id="tab" name="appliance" value="tab">
+            <label for="tab">Tablet</label>
+        </div>
+
+        <label>Floor:</label>
+        <div class="radio-group">
+            <input type="radio" id="floor1" name="floor" value="1" required>
+            <label for="floor1">1</label>
+            <input type="radio" id="floor2" name="floor" value="2">
+            <label for="floor2">2</label>
+            <input type="radio" id="floor3" name="floor" value="3">
+            <label for="floor3">3</label>
+            <input type="radio" id="floor4" name="floor" value="4">
+            <label for="floor4">4</label>
+        </div>
+
+        <label>Environment Site:</label>
+        <div class="radio-group">
+            <input type="radio" id="openPlantation" name="environment" value="open plantation" required>
+            <label for="openPlantation">Open Plantation</label>
+            <input type="radio" id="closedPlantation" name="environment" value="closed plantation">
+            <label for="closedPlantation">Closed Plantation</label>
+        </div>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            const data = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                food: document.querySelector('input[name="food"]:checked').value,
+                bedsharing: document.querySelector('input[name="bedsharing"]:checked').value,
+                accommodation: document.querySelector('input[name="accommodation"]:checked').value,
+                appliances: Array.from(document.querySelectorAll('input[name="appliance"]:checked')).map(el => el.value),
+                floor: document.querySelector('input[name="floor"]:checked').value,
+                environment: document.querySelector('input[name="environment"]:checked').value
+            };
+            
+            fetch("http://localhost:3000/extra-services", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>

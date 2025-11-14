@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Old Age Home</title>
+    <style>
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, rgb(95, 95, 158), Darkblue);
+            /* Softer gradient background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Profile image styling */
+        .profile-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-image: url('login.jpeg'); /* Replace with the actual image URL */
+            background-size: cover; /* Ensure the image covers the circle */
+            background-position: center; /* Center the image */
+            background-color: rgba(255, 255, 255, 0.3); /* Light circular background */
+        }
+
+        /* Title styling */
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Label and input styling */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            color: #ddd; /* Light color for labels */
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            box-sizing: border-box;
+        }
+
+        /* Additional options styling */
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            color: #ddd;
+        }
+
+        /* Checkbox styling */
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        /* Button styling */
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Forgot password link styling */
+        .forgot-password {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* Social login buttons styling */
+        .social-login {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            margin: 0 5px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center; /* Center items vertically */
+        }
+
+        .google-button {
+            background-color: #4267b2; /* Google red */
+        }
+
+        .facebook-button {
+            background-color: #4267b2; /* Facebook blue */
+        }
+
+        /* Logo styling */
+        .social-logo {
+            width: 20px; /* Adjust the size as needed */
+            height: 20px;
+            margin-right: 10px; /* Spacing between logo and text */
+        }
+
+        /* Create account section styling */
+        #createAccount {
+            display: none; /* Hide the create account section initially */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile picture icon -->
+        <div class="profile-icon"></div> 
+        <h2>Login to Your Account</h2>
+        <form id="loginForm" action="javascript:submitLogin()" method="post">
+            <!-- Username field -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <!-- Password field -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <!-- Remember me and forgot password -->
+            <div class="options">
+                <label><input type="checkbox" name="remember"> Remember me</label>
+            </div>
+
+            <!-- Centered Login button -->
+            <div class="button-container">
+                <button type="button" onclick="return validateLogin()">Login</button>
+            </div>
+        </form>
+
+    
+        <!-- Create Account Section -->
+        <div id="createAccount">
+            <h2>Create Google Account</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label for="newName">Name</label>
+                    <input type="text" id="newName" name="newName" required>
+                </div>
+                <div class="form-group">
+                    <label for="newEmail">Email</label>
+                    <input type="email" id="newEmail" name="newEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Password</label>
+                    <input type="password" id="newPassword" name="newPassword" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Create Account</button>
+                    <button type="button" onclick="return validateLogin()">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        async function validateLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            try {
+                const response = await fetch('http://localhost:3000/validatelogin', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+                console.log(result)
+                if (result.success) {
+                    // Redirect to the admin home page
+                    window.location.href = 'home2.html';
+                   return true;
+                } else {
+                    alert("Invalid credentials. Please try again.");
+                   return false;
+                }
+            } catch (error) {
+                console.error("Error during login:", error);
+               return false;
+            }
+            return false; // Prevents form submission
+        }
+        function submitLogin() {
+            alert("Login successful!");
+            window.location.href = "home2.html";
+        }
+
+        
+    </script>
+</body>
+</html>

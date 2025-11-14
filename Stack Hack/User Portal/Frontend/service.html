@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Width Image with Text</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset body margin and padding */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        /* Container for the image and overlay text */
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2.5em;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+        .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+        }
+        .content {
+            text-align: center;
+            max-width: 600px;
+        }
+        .title {
+            font-weight: bold;
+            font-size: 36px;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
+            color: #b41564;
+        }
+        .subtitle {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .separator {
+            width: 50px;
+            height: 3px;
+            background-color: #333;
+            margin: 15px auto;
+        }
+        .description {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container, .container-reverse, .container-right {
+            display: flex;
+            max-width: 1200px;
+            margin: 30px auto;
+            width: 100%;
+        }
+        .text-content {
+            padding: 40px;
+            background-color: #8b1845;
+            color: white;
+            width: 50%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center;    /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            text-align: center;      /* Center text alignment */
+        }
+        .text-content h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .text-content p {
+            margin-top: 10px;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+        .image-content {
+            width: 50%;
+        }
+        .image-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            color: #4a0d39;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f6f4;
+        }
+        .container1 {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .title1 {
+            text-align: left;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .subtitle1 {
+            margin-top: -10px;
+            color: #4a0d39;
+            border-top: 2px solid #4a0d39;
+            width: 350px;
+            margin-bottom: 20px;
+            text-align:center;
+        }
+        .description1 {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .feature-item {
+            width: 45%;
+            display: flex;
+            align-items: center;
+        }
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            color: #4a0d39;
+            font-size: 2em;
+        }
+        .feature-text {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        /* Header styling */
+        header {
+            position: relative;
+            height: 100vh;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Navigation bar styling */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav .logo {
+            display: flex;
+            align-items: center;
+        }
+        nav .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        nav .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        nav .join-btn {
+            padding: 5px 10px;
+            background-color: #e6c785;
+            color: #333;
+            font-weight: bold;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-right: 90px;
+        }
+        footer {
+    background-color: #3c5a99;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+  }
+  .image-container {
+    display: flex;
+    gap: 2px;
+    animation: scroll 30s linear infinite;
+    position: relative;
+    z-index: 0;
+}
+.image-box {
+    width: 500px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 0 0 auto;
+}
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+    </style>
+</head>
+<body>
+    <!-- Full-width image with overlay text -->
+    <div class="image-container">
+        <img src="Screenshot 2024-10-31 183114.png" alt="Background Image">
+        <div class="overlay-text">Your comfort isn't just our mission—<br>it's our promise.</div>
+    </div>
+    <nav>
+        <div class="logo">
+            <img src="Screenshot 2024-10-30 225206.png" alt="ElderCare Logo"> <!-- Replace with your logo image -->
+            <h1>Happy homes</h1>
+        </div>
+        <ul>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="help.html">Help</a></li>
+            <li><a href="qrpage.html">Payments</a></li>
+            <li><a href="extra.html">Premium Services</a></li>
+        </ul>
+        <a href="location.html" class="join-btn">Join Us</a>
+    </nav>
+
+    <!-- Centered content below the image -->
+    <div class="content-container">
+        <div class="content">
+            <div class="title">A Home Built on Comfort, Care, and Compassion</div>
+            <div class="subtitle">Welcome to a place where you can truly relax and embrace every moment.</div>
+            <div class="separator"></div>
+            <p class="description">
+                At our senior living community, we are dedicated to creating an environment where comfort, safety, and well-being come first. 
+                With thoughtfully designed living spaces, top-notch medical care, and a vibrant social atmosphere, you can enjoy each day with peace of mind.
+            </p>
+        </div>
+    </div>
+
+    <!-- Flex container with image and text side-by-side with no gap -->
+    <div class="container">
+        <div class="text-content">
+            <h1>You Are In Safe Hands</h1>
+            <p>Our dedicated security team ensures safety through 24/7 monitoring at our gated entrance and CCTV coverage in common areas, providing peace of mind for all residents.</p>
+            
+        </div>
+        <div class="image-content">
+            <img src="Screenshot 2024-10-31 180512.png" alt="CCTV Camera">
+        </div>
+    </div>
+
+    <!-- Reversed container with image on the left and text on the right -->
+    <div class="container-reverse">
+        <div class="image-content">
+            <img src="Screenshot 2024-10-31 133535.png" alt="Care Image">
+        </div>
+        <div class="text-content">
+            <h1>Relax, As Care Is Around The Corner</h1>
+            <p>Our staff is just a call away, ready to assist with any needs you may have. Enjoy peace of mind knowing that support and care are always nearby.</p>
+        </div>
+    </div>
+
+    <!-- New container with text on the left and image on the right -->
+    <div class="container-right">
+        <div class="text-content">
+            <h1>Clean</h1>
+            <p>Experience a spotless, well-maintained environment designed to make you feel at ease every day.</p>
+        </div>
+        <div class="image-content">
+            <img src="Screenshot 2024-10-31 180723.png" alt="Cleanliness Image">
+        </div>
+    </div>
+
+    <!-- New container with image on the left and text on the right -->
+    <div class="container-reverse">
+        <div class="image-content">
+            <img src="Screenshot 2024-10-31 180930.png" alt="Food Image">
+        </div>
+        <div class="text-content">
+            <h1>Nothing Brings People Together Like Good Food</h1>
+            <p>Gather around the table and share moments that matter. Our culinary delights are crafted to foster connections and create lasting memories with loved ones.</p>
+        </div>
+    </div>
+
+    <!-- New container with image on the right and text on the left -->
+    <div class="container">
+        <div class="text-content">
+            <h1 style="text-align: center;">Revitalize Your Life: Fitness for Seniors</h1>
+            <p>Embrace a healthier lifestyle with our tailored fitness programs designed for seniors. Stay active, improve your strength, and enhance your well-being with engaging exercises suited to your needs.</p>
+        </div>
+        <div class="image-content">
+            <img src="Screenshot 2024-10-31 181208.png" alt="Fitness for Seniors">
+        </div>
+    </div>
+
+    <!-- New container with image on the left and text on the right -->
+    <div class="container-reverse">
+        <div class="image-content">
+            <img src="Screenshot 2024-10-31 181523.png" alt="Building Bonds Image">
+        </div>
+        <div class="text-content">
+            <h1>Build Long Lasting Bonds Here</h1>
+            <p>Our community is designed to foster friendships and connections. Engage in social activities, share experiences, and create lasting memories with neighbors who become like family.</p>
+        </div>
+    </div>
+    <div class="container1">
+        <h1 class="title1">Feel Right At Home</h1>
+        <div class="subtitle1"></div>
+        <p class="description1">
+            At Happy homes, our residences are meticulously crafted to ensure the utmost comfort for seniors. We prioritize convenience and well-being, enabling you to fully engage in life’s essential moments. With an extensive array of amenities, we empower you to maintain a healthy, active lifestyle while fostering meaningful connections within the community. 
+        </p>
+        <div class="features">
+            <div class="feature-item">
+                <span class="feature-icon">🚪</span>
+                <span class="feature-text">Wider Doors</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">💡</span>
+                <span class="feature-text">Well-lit Homes</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">♿</span>
+                <span class="feature-text">Wheelchair Enabled Homes</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🏞</span>
+                <span class="feature-text">Common areas designed to increase socialization between residents</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🛠</span>
+                <span class="feature-text">Grab Bars & Railings across campus</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">📹</span>
+                <span class="feature-text">Video Door Phones</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🚽</span>
+                <span class="feature-text">Grab bars in toilets</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🔲</span>
+                <span class="feature-text">Anti-skid tiles across apartment & common areas</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🍴</span>
+                <span class="feature-text">Accessible kitchen counters</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🔆</span>
+                <span class="feature-text">Light Sensors in Bathroom</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🆘</span>
+                <span class="feature-text">Emergency Panic Button</span>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">🛋</span>
+                <span class="feature-text">Elder Friendly Furniture in all common areas</span>
+            </div>
+        </div>
+    </div>
+    <footer style="background-color: white; padding: 20px; font-family: Arial, sans-serif; color: #4b0d37;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto;">
+            
+            <!-- Quick Links -->
+            <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+                <h3 style="color: #83256e; font-weight: bold;">QUICK LINKS</h3>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li><a href="home.html" style="text-decoration: none; color: #000;">Home</a></li>
+                    <li><a href="service.html" style="text-decoration: none; color: #000;">Services</a></li>
+                   
+                    <li><a href="contact.html" style="text-decoration: none; color: #000;">Contact us</a></li>
+                    <li><a href="help.html" style="text-decoration: none; color: #000;">Help</a></li>
+                    <li><a href="location.html" style="text-decoration: none; color: #000;">Join us</a></li>
+                    <li><a href="qrpage.html" style="text-decoration: none; color: #000;">Payments</a></li>
+                    <li><a href="extra.html" style="text-decoration: none; color: #000;">Premium Services</a></li>
+                   
+                </ul>
+            </div>
+            
+           
+    
+            <!-- Contact Information -->
+            <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+                <h3 style="color: #83256e; font-weight: bold;">GET IN TOUCH</h3>
+                <p style="margin: 5px 0;"><strong>HEAD OFFICE:</strong><br> Avantika Enclave, 6th Floor,BHEL road,Ameenpur, Hyderabad, 502032</p>
+                <p style="margin: 5px 0;"><strong>EMAIL ID:</strong> happyhomes@gmail.com</a></p>
+                <p style="margin: 5px 0;"><strong>PHONE NO:</strong> 7989026236</p>
+                <p style="margin: 5px 0;"><strong>CONTACT:</strong>9392630070</a></p>
+            </div>
+            
+
+           
+    <br><br>
+        <!-- Footer Bottom -->
+        <div style="text-align: right; padding: 10px 0; margin-top: 20px;">
+            <p style="margin: 0;">&copy; 2024 HAPPY HOMES | All Rights Reserved</a></p>
+            <p style="margin: 0;">DESIGNED & DEVELOPED BY HAPPY HOMES</p>
+        </div>
+    </footer>
+</body>
+</html>
